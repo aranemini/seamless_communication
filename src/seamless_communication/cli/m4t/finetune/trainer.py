@@ -371,6 +371,7 @@ class UnitYFinetune:
                 key.replace("module.model.", ""): value
                 for key, value in self.model.state_dict().items()
             }
+            state_dict = {"model" : state_dict}
             torch.save(state_dict, self.params.save_model_path)
         if dist_utils.is_dist_initialized():
             dist.barrier()
